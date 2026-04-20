@@ -8,7 +8,7 @@ import org.springframework.util.backoff.FixedBackOff;
 
 @Slf4j
 @Configuration
-public class KafkConfig {
+public class KafkaConfig {
 
     @Bean
     public DefaultErrorHandler errorHandler() {
