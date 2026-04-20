@@ -48,8 +48,8 @@ public class EmailService {
                 + "<h3>hello <b>" + name + "</b>,</h3>"
                 + "<h3>your account has been successfully registered.</h3>"
                 + "<table>"
-                + "<tr><td>email:</td><td>" + email + "</td></tr>"
-                + "<tr><td>password:</td><td>" + password + "</td></tr>"
+                + "<tr><td>email:</td><td><b>" + email + "</b></td></tr>"
+                + "<tr><td>password:</td><td><b>" + password + "</b></td></tr>"
                 + "</table>"
                 + "</body></html>";
 
@@ -58,7 +58,7 @@ public class EmailService {
     }
 
     @Async
-    public void sendPaymentConfirmation(String name, String email, Double amount) throws MessagingException, UnsupportedEncodingException {
+    public void sendPaymentConfirmation(String email, Long orderId, Double amount) throws MessagingException, UnsupportedEncodingException {
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
 
@@ -67,9 +67,11 @@ public class EmailService {
         mimeMessageHelper.setSubject("payment successful");
 
         String text = "<html><body>"
-                + "<h3>hello " + name + ",</h3>"
-                + "<p>your payment of <b>₹" + amount + "</b> was successful.</p>"
-                + "<p>thank you.</p>"
+                + "<h3>payment successful</h3>"
+                + "<table>"
+                + "<tr><td>order id:</td><td><b>" + orderId + "</b></td></tr>"
+                + "<tr><td>amount:</td><td><b>" + amount + "</b></td></tr>"
+                + "</table>"
                 + "</body></html>";
 
         mimeMessageHelper.setText(text, true);
