@@ -39,6 +39,7 @@ public class JwtUtil {
                 .claims(claims)
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + jwtExpiration))
+                .signWith(secretKey())
                 .compact();
     }
 
