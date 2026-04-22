@@ -4,6 +4,7 @@ import com.ecommerce.dto.request.UserRequest;
 import com.ecommerce.dto.response.UserResponse;
 import com.ecommerce.entity.User;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.util.List;
 

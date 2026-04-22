@@ -209,6 +209,7 @@ public class AuthServiceImpl implements AuthService {
         log.info("{} logged in successfully", user.getUsername());
 
         UserResponse userResponse = userMapper.toUserResponse(user);
+        System.out.println(user);
         return new LoginResponse(token, userResponse);
     }
 

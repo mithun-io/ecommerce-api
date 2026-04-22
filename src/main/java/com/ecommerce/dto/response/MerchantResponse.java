@@ -3,10 +3,12 @@ package com.ecommerce.dto.response;
 import com.ecommerce.entity.User;
 import com.ecommerce.enums.Gender;
 import com.ecommerce.enums.UserStatus;
+import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Data
 public class MerchantResponse {
 
     private Long id;
