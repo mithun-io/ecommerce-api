@@ -308,3 +308,128 @@ response
     "data": null,
     "httpStatus": 200
 }
+
+admin controller
+login as admin and insert the jwt token in authorization/bearer token
+POST: localhost:8081/api/auth/login
+response
+{
+    "success": true,
+    "message": "login successful",
+    "data": {
+        "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBlY29tbWVyY2UuY29tIiwicm9sZSI6IlJPTEU6QURNSU4iLCJpYXQiOjE3NzY5NDg0OTcsImV4cCI6MTc3Njk1Njg5N30.jzCr_uovZPx35jhjSdpIWsJERHsj8Bjwym7Xgym_yTC5CooxbcAAWYArXS_CmLyjxX1kpsPV2fvAxqBzm_4HSw",
+        "userResponse": {
+            "address": "bangalore",
+            "createdAt": "2026-04-23 16:39 PM",
+            "dateOfBirth": "2005-06-14",
+            "email": "admin@ecommerce.com",
+            "gender": "MALE",
+            "id": 1,
+            "mobile": "0",
+            "userRole": "ADMIN",
+            "userStatus": "ACTIVE",
+            "username": "admin"
+        }
+    },
+    "httpStatus": 200
+}
+
+blocking user
+PATCH: localhost:8081/api/admin/block/2
+response
+{
+    "success": true,
+    "message": "user blocked successfully",
+    "data": {
+        "address": "los angeles",
+        "createdAt": "2026-04-23 16:42 PM",
+        "dateOfBirth": "2000-12-31",
+        "email": "zsoxn33211@minitts.net",
+        "gender": "MALE",
+        "id": 2,
+        "mobile": "9876543210",
+        "userRole": "CUSTOMER",
+        "userStatus": "BLOCKED",
+        "username": "zsoxn33211"
+    },
+    "httpStatus": 200
+}
+
+unblocking user
+PATCH: localhost:8081/api/admin/unblock/2
+response
+{
+    "success": true,
+    "message": "user unblocked successfully",
+    "data": {
+        "address": "los angeles",
+        "createdAt": "2026-04-23 16:42 PM",
+        "dateOfBirth": "2000-12-31",
+        "email": "zsoxn33211@minitts.net",
+        "gender": "MALE",
+        "id": 2,
+        "mobile": "9876543210",
+        "userRole": "CUSTOMER",
+        "userStatus": "ACTIVE",
+        "username": "zsoxn33211"
+    },
+    "httpStatus": 200
+}
+
+approving product
+PATCH: localhost:8081/api/admin/approve/product/7
+response
+{
+    "success": true,
+    "message": "product approved",
+    "data": {
+        "brand": "Calvin Klein",
+        "category": "fragrances",
+        "id": 7,
+        "merchantId": 2,
+        "price": 49.99,
+        "productStatus": "APPROVED",
+        "rating": 4.37,
+        "stock": 29,
+        "tags": [
+            "fragrances",
+            "perfumes"
+        ],
+        "thumbnail": "https://cdn.dummyjson.com/product-images/fragrances/calvin-klein-ck-one/thumbnail.webp",
+        "title": null
+    },
+    "httpStatus": 200
+}
+
+
+denying product
+PATCH: localhost:8081/api/admin/deny/product/11
+response
+{
+    "success": true,
+    "message": "product denied",
+    "data": {
+        "brand": "Gucci",
+        "category": "fragrances",
+        "id": 11,
+        "merchantId": 2,
+        "price": 79.99,
+        "productStatus": "REJECTED",
+        "rating": 2.74,
+        "stock": 91,
+        "tags": [
+            "fragrances",
+            "perfumes"
+        ],
+        "thumbnail": "https://cdn.dummyjson.com/product-images/fragrances/gucci-bloom-eau-de/thumbnail.webp",
+        "title": null
+    },
+    "httpStatus": 200
+}
+
+fetching customers, merchants, products
+GET: localhost:8081/api/admin/customers
+
+GET: localhost:8081/api/admin/merchants
+
+GET: localhost:8081/api/admin/products
