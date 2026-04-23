@@ -58,7 +58,7 @@ public class MerchantServiceImpl implements MerchantService {
                     .tags(dummyJsonProduct.getTags())
                     .thumbnail(dummyJsonProduct.getThumbnail())
                     .stock(dummyJsonProduct.getStock())
-                    .productStatus(ProductStatus.APPROVED)
+                    .productStatus(ProductStatus.PENDING)
                     .merchant(merchant)
                     .build();
             products.add(product);
@@ -81,7 +81,7 @@ public class MerchantServiceImpl implements MerchantService {
                 .tags(productRequest.getTags())
                 .thumbnail(productRequest.getThumbnail())
                 .stock(productRequest.getStock())
-                .productStatus(ProductStatus.APPROVED)
+                .productStatus(ProductStatus.PENDING)
                 .merchant(merchant)
                 .build();
         Product savedProducts = productRepository.save(product);

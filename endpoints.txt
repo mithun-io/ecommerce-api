@@ -1,3 +1,5 @@
+auth controller
+
 admin login
 POST: localhost:8081/api/auth/login
 body/raw/json
@@ -200,6 +202,109 @@ response
 {
     "success": true,
     "message": "password reset successful",
+    "data": null,
+    "httpStatus": 200
+}
+
+merchant controller
+
+login as merchant
+POST: localhost:8081/api/auth/login
+{
+  "email": "uvzug73579@minitts.net",
+  "password": "SDh129!@ds19"
+}
+
+add the merchant jwt token to authorization/bearer token
+
+adding products
+POST: localhost:8081/api/merchant/product?email=uvzug73579@minitts.net
+body/raw/json
+{
+  "title": "Samsung S24",
+  "category": "Electronics",
+  "price": 89999,
+  "rating": 4.5,
+  "brand": "Samsung",
+  "tags": ["mobile", "samsung"],
+  "thumbnail": "https://example.com/samsung.jpg",
+  "stock": 10
+}
+
+response
+{
+    "success": true,
+    "message": "product saved successfully",
+    "data": {
+        "brand": "Samsung",
+        "category": "Electronics",
+        "id": 1,
+        "merchantId": 2,
+        "price": 89999.0,
+        "productStatus": "PENDING",
+        "rating": 4.5,
+        "stock": 10,
+        "tags": [
+            "mobile",
+            "samsung"
+        ],
+        "thumbnail": "https://example.com/samsung.jpg",
+        "title": "Samsung S24"
+    },
+    "httpStatus": 200
+}
+
+adding products from dummyjson.com/products
+POST: localhost:8081/api/merchant/products/dummy?email=uvzug73579@minitts.net
+
+response from dummyjson products
+
+viewing the products
+GET: localhost:8081/api/merchant/products?email=uvzug73579@minitts.net
+
+updating the products
+PUT: localhost:8081/api/merchant/product/1?email=uvzug73579@minitts.net
+body/raw/json
+{
+  "title": "Samsung S24",
+  "category": "Electronics",
+  "price": 79999,
+  "rating": 4.5,
+  "brand": "Samsung",
+  "tags": ["mobile", "samsung"],
+  "thumbnail": "https://example.com/samsung.jpg",
+  "stock": 10
+}
+
+response
+{
+    "success": true,
+    "message": "product updated successfully",
+    "data": {
+        "brand": "Samsung",
+        "category": "Electronics",
+        "id": 1,
+        "merchantId": 2,
+        "price": 79999.0,
+        "productStatus": "PENDING",
+        "rating": 4.5,
+        "stock": 10,
+        "tags": [
+            "mobile",
+            "samsung"
+        ],
+        "thumbnail": "https://example.com/samsung.jpg",
+        "title": "Samsung S24"
+    },
+    "httpStatus": 200
+}
+
+deleting the products
+DEL: localhost:8081/api/merchant/product/1?email=uvzug73579@minitts.net
+response
+{
+    "success": true,
+    "message": "product deleted successfully",
     "data": null,
     "httpStatus": 200
 }

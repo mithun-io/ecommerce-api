@@ -21,30 +21,30 @@ public class MerchantController {
 
     @PostMapping("/product")
     @PreAuthorize("hasRole('MERCHANT')")
-    public ResponseEntity<ApiResponse<ProductResponse>> saveProduct(@Valid @RequestBody ProductRequest request, @RequestParam String email) {
-        ProductResponse response = merchantService.saveProduct(request, email);
-        return ResponseEntity.ok(new ApiResponse<>(true, "product saved successfully", response, 200));
+    public ResponseEntity<ApiResponse<ProductResponse>> saveProduct(@Valid @RequestBody ProductRequest productRequest, @RequestParam String email) {
+        ProductResponse productResponse = merchantService.saveProduct(productRequest, email);
+        return ResponseEntity.ok(new ApiResponse<>(true, "product saved successfully", productResponse, 200));
     }
 
     @PostMapping("/products/dummy")
     @PreAuthorize("hasRole('MERCHANT')")
     public ResponseEntity<ApiResponse<List<ProductResponse>>> addProductsFromDummy(@RequestParam String email) {
-        List<ProductResponse> responses = merchantService.addProducts(email);
-        return ResponseEntity.ok(new ApiResponse<>(true, "products added from DummyJSON", responses, 200));
+        List<ProductResponse> productResponses = merchantService.addProducts(email);
+        return ResponseEntity.ok(new ApiResponse<>(true, "products added from DummyJSON", productResponses, 200));
     }
 
     @GetMapping("/products")
     @PreAuthorize("hasRole('MERCHANT')")
     public ResponseEntity<ApiResponse<List<ProductResponse>>> getProducts(@RequestParam String email) {
-        List<ProductResponse> responses = merchantService.getProducts(email);
-        return ResponseEntity.ok(new ApiResponse<>(true, "products fetched successfully", responses, 200));
+        List<ProductResponse> productResponses = merchantService.getProducts(email);
+        return ResponseEntity.ok(new ApiResponse<>(true, "products fetched successfully", productResponses, 200));
     }
 
     @PutMapping("/product/{id}")
     @PreAuthorize("hasRole('MERCHANT')")
     public ResponseEntity<ApiResponse<ProductResponse>> updateProduct(@PathVariable Long id, @Valid @RequestBody ProductRequest request, @RequestParam String email) {
-        ProductResponse response = merchantService.updateProduct(id, request, email);
-        return ResponseEntity.ok(new ApiResponse<>(true, "product updated successfully", response, 200));
+        ProductResponse productResponse = merchantService.updateProduct(id, request, email);
+        return ResponseEntity.ok(new ApiResponse<>(true, "product updated successfully", productResponse, 200));
     }
 
     @DeleteMapping("/product/{id}")
