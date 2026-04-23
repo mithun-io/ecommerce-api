@@ -23,5 +23,5 @@ public class Cart {
     private Customer customer;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<CartItem> items;
+    private List<CartItem> cartItems;
 }

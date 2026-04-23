@@ -60,3 +60,8 @@ management:
 logging:
   level:
     root: info
+
+razorpay:
+  api:
+    key: ${RAZORPAY_KEY}
+    secret: ${RAZORPAY_SECRET}

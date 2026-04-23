@@ -103,6 +103,7 @@ public class AdminServiceImpl implements AdminService {
         return userMapper.toUserResponse(user);
     }
 
+    @Transactional
     @Override
     public ProductResponse approveProduct(Long id) {
         Product product = getProduct(id);
@@ -111,6 +112,7 @@ public class AdminServiceImpl implements AdminService {
         return productMapper.toProductResponse(product);
     }
 
+    @Transactional
     @Override
     public ProductResponse denyProduct(Long id) {
         Product product = getProduct(id);
@@ -119,6 +121,7 @@ public class AdminServiceImpl implements AdminService {
         return productMapper.toProductResponse(product);
     }
 
+    @Transactional
     @Override
     public List<CustomerResponse> getAllCustomers() {
         List<Customer> customers = customerRepository.findAll();
@@ -128,6 +131,7 @@ public class AdminServiceImpl implements AdminService {
         return customerMapper.toCustomerResponses(customers);
     }
 
+    @Transactional
     @Override
     public List<MerchantResponse> getAllMerchants() {
         List<Merchant> merchants = merchantRepository.findAll();
@@ -137,6 +141,7 @@ public class AdminServiceImpl implements AdminService {
         return merchantMapper.toMerchantResponses(merchants);
     }
 
+    @Transactional
     @Override
     public List<ProductResponse> getAllProducts() {
         List<Product> products = productRepository.findAll();

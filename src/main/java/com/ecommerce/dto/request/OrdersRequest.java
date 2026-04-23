@@ -8,7 +8,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class OrderRequest {
+public class OrdersRequest {
 
     @NotNull(message = "amount is required")
     private Double amount;

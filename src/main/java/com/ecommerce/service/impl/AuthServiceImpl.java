@@ -29,6 +29,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.security.Principal;
 import java.security.SecureRandom;
@@ -60,6 +61,7 @@ public class AuthServiceImpl implements AuthService {
         return secureRandom.nextInt(100000, 1000000);
     }
 
+    @Transactional
     @Override
     public void customerRegistration(CustomerRequest customerRequest) {
         if (userRepository.existsByEmailAndMobile(customerRequest.getEmail(), customerRequest.getMobile())) {
@@ -75,6 +77,7 @@ public class AuthServiceImpl implements AuthService {
         redisService.storePendingCustomer(customerRequest.getEmail(), customerRequest);
     }
 
+    @Transactional
     @Override
     public void merchantRegistration(MerchantRequest merchantRequest) {
         if (userRepository.existsByEmailAndMobile(merchantRequest.getBusinessEmail(), merchantRequest.getBusinessMobile())) {
@@ -90,6 +93,7 @@ public class AuthServiceImpl implements AuthService {
         redisService.storePendingMerchant(merchantRequest.getBusinessEmail(), merchantRequest);
     }
 
+    @Transactional
     @Override
     public void verifyCustomerOtp(OtpRequest otpRequest) {
         Integer storedOtp = redisService.getOtp(otpRequest.getEmail());
@@ -132,6 +136,7 @@ public class AuthServiceImpl implements AuthService {
         redisService.deletePendingCustomer(otpRequest.getEmail());
     }
 
+    @Transactional
     @Override
     public void verifyMerchantOtp(OtpRequest otpRequest) {
         Integer storedOtp = redisService.getOtp(otpRequest.getEmail());
@@ -177,6 +182,7 @@ public class AuthServiceImpl implements AuthService {
         redisService.deletePendingMerchant(otpRequest.getEmail());
     }
 
+    @Transactional
     @Override
     public void resendOtp(String email) {
 
@@ -200,6 +206,7 @@ public class AuthServiceImpl implements AuthService {
         }
     }
 
+    @Transactional
     @Override
     public LoginResponse login(LoginRequest loginRequest) {
         User user = userRepository.findByEmail(loginRequest.getEmail()).orElseThrow(() -> new NoResourceFoundException("user not found"));
@@ -213,6 +220,7 @@ public class AuthServiceImpl implements AuthService {
         return new LoginResponse(token, userResponse);
     }
 
+    @Transactional
     @Override
     public UserResponse passwordChange(PasswordChangeRequest passwordChangeRequest, Principal principal) {
         String email = principal.getName();
@@ -231,6 +239,7 @@ public class AuthServiceImpl implements AuthService {
         return userMapper.toUserResponse(user);
     }
 
+    @Transactional
     @Override
     public void forgetPassword(String email) {
         User user = userRepository.findByEmail(email).orElseThrow(() -> new NoResourceFoundException("user not found"));
@@ -240,6 +249,7 @@ public class AuthServiceImpl implements AuthService {
         redisService.storeOtp(email, otp);
     }
 
+    @Transactional
     @Override
     public void passwordReset(PasswordResetRequest passwordResetRequest) {
         User user = userRepository.findByEmail(passwordResetRequest.getEmail()).orElseThrow(() -> new NoResourceFoundException("user not found"));

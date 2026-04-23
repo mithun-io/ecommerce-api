@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class OrderResponse {
+public class OrdersResponse {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;

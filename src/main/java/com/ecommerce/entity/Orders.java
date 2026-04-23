@@ -12,10 +12,9 @@ import java.util.List;
 @Data
 @Entity
 @Builder
-@Table(name = "orders")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Order {
+public class Orders {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,5 +39,6 @@ public class Order {
     private Customer customer;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<CartItem> items;
+    @JoinColumn(name = "order_id")
+    private List<CartItem> cartItems;
 }
