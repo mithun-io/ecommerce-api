@@ -41,10 +41,8 @@ public class EmailService {
             String text = "<html><body>"
                     + "<h3>hello <b>" + name + "</b>,</h3>"
                     + "<h3>your account has been successfully registered.</h3>"
-                    + "<table>"
-                    + "<tr><td>email:</td><td><b>" + email + "</b></td></tr>"
-                    + "<tr><td>password:</td><td><b>" + password + "</b></td></tr>"
-                    + "</table>"
+                    + "<h3>email: <b>" + email + "</b></h3>"
+                    + "<h3>password: <b>" + password + "</b></h3>"
                     + "</body></html>";
 
             sendEmail(email, subject, text);
@@ -61,10 +59,8 @@ public class EmailService {
 
             String text = "<html><body>"
                     + "<h3>payment successful</h3>"
-                    + "<table>"
-                    + "<tr><td>order id:</td><td><b>" + orderId + "</b></td></tr>"
-                    + "<tr><td>amount:</td><td><b>" + amount + "</b></td></tr>"
-                    + "</table>"
+                    + "<h3>order id: <b>" + orderId + "</b></h3>"
+                    + "<h3>amount: <b>" + amount + "</b></h3>"
                     + "</body></html>";
 
             sendEmail(email, subject, text);

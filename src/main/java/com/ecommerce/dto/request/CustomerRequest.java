@@ -21,7 +21,7 @@ public class CustomerRequest {
     private String mobile;
 
     @NotBlank(message = "password is required")
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$", message = "password must be at least 8 characters and include uppercase, lowercase, number and special character")
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^A-Za-z\\d]).{8,}$", message = "password must be at least 8 characters and include uppercase, lowercase, number and special character")
     private String password;
 
     @NotNull(message = "gender is required")

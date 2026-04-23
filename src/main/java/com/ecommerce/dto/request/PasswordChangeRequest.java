@@ -15,7 +15,7 @@ public class PasswordChangeRequest {
 
     @NotBlank(message = "new password is required")
     @Size(min = 8, max = 20, message = "new password must be between 8 and 20 characters")
-    @Pattern(regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&]).+$", message = "new password must contain uppercase, lowercase, number and special character")
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^A-Za-z\\d]).{8,}$", message = "new password must contain uppercase, lowercase, number and special character")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String newPassword;
 }

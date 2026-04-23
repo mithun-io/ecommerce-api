@@ -1,5 +1,5 @@
 admin login
-POST: localhost:80/api/auth/login
+POST: localhost:8081/api/auth/login
 body/raw/json
 {
     "email" : "admin@ecommerce.com",
@@ -11,10 +11,10 @@ response
     "success": true,
     "message": "login successful",
     "data": {
-        "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBlY29tbWVyY2UuY29tIiwicm9sZSI6IlJPTEU6QURNSU4iLCJpYXQiOjE3NzY4Njc5NzcsImV4cCI6MTc3Njg3NjM3N30.T3KmulEBCOSYhrFleJpmOTypBYeeFvO9Ek6XqQLZRAwS-yyidSI_X0cn7brzbvM1CEU1uV7Gaz9AuUyQlZsLNA",
+        "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBlY29tbWVyY2UuY29tIiwicm9sZSI6IlJPTEU6QURNSU4iLCJpYXQiOjE3NzY5NDI2MzUsImV4cCI6MTc3Njk1MTAzNX0.a8vI_cKQM3k35KaYLDeJKA7EDb61Yv6pWMbv66y_7husTMPP_R2AFJ-BB0D3w7B0URkJOe7BEIY5OCzfWit4XQ",
         "userResponse": {
             "address": "bangalore",
-            "createdAt": "2026-04-22 17:58 PM",
+            "createdAt": "2026-04-23 16:39 PM",
             "dateOfBirth": "2005-06-14",
             "email": "admin@ecommerce.com",
             "gender": "MALE",
@@ -25,5 +25,127 @@ response
             "username": "admin"
         }
     },
+    "httpStatus": 200
+}
+
+authenticate with admin jwt token in authorization - bearer token
+
+customer registration
+POST: localhost:8081/api/auth/customer/register
+body/raw/json
+{
+  "name": "zsoxn33211",
+  "email": "zsoxn33211@minitts.net",
+  "mobile": "9876543210",
+  "password": "Qw#17:#sdb1WQ",
+  "gender": "MALE",
+  "dateOfBirth": "2000-12-31",
+  "address": "los angeles"
+}
+
+response
+{
+    "success": true,
+    "message": "otp sent successfully",
+    "data": null,
+    "httpStatus": 201
+}
+
+verify-otp (check email)
+PATCH: localhost:8081/api/auth/customer/verify
+body/raw/json
+{
+  "email": "zsoxn33211@minitts.net",
+  "otp": "479161"
+}
+
+response
+{
+    "success": true,
+    "message": "registration successful",
+    "data": null,
+    "httpStatus": 200
+}
+
+customer login
+POST: localhost:8081/api/auth/login
+body/raw/json
+{
+  "email": "zsoxn33211@minitts.net",
+  "password": "Qw#17:#sdb1WQ"
+}
+
+response
+{
+    "success": true,
+    "message": "login successful",
+    "data": {
+        "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ6c294bjMzMjExQG1pbml0dHMubmV0Iiwicm9sZSI6IlJPTEU6Q1VTVE9NRVIiLCJpYXQiOjE3NzY5NDI3OTEsImV4cCI6MTc3Njk1MTE5MX0.Q5f1mDyfRkZm8NGi1fC8JiHEHEhYotoQv75f6_65QDqI1LbWZuXLiko0wkbMktsucZvQdCx2z7Enzt4t4Wmvnw",
+        "userResponse": {
+            "address": "los angeles",
+            "createdAt": "2026-04-23 16:42 PM",
+            "dateOfBirth": "2000-12-31",
+            "email": "zsoxn33211@minitts.net",
+            "gender": "MALE",
+            "id": 2,
+            "mobile": "9876543210",
+            "userRole": "CUSTOMER",
+            "userStatus": "ACTIVE",
+            "username": "zsoxn33211"
+        }
+    },
+    "httpStatus": 200
+}
+
+authenticate with admin jwt token in authorization - bearer token
+
+merchant registration
+POST: localhost:8081/api/auth/merchant/register
+body/json/raw
+{
+  "businessName": "uvzug73579",
+  "ownerName": "uvzug",
+  "businessEmail": "uvzug73579@minitts.net",
+  "businessMobile": "9876543230",
+  "businessAddress": "california",
+  "password": "EQL#!sbd1aAd",
+  "gender": "MALE",
+  "dateOfBirth": "1998-04-12",
+ "gstNumber": "29ABCDE1234F1Z9",
+  "panNumber": "ABCDE1235F",
+  "businessLicense": "LIC123156"
+}
+
+response
+{
+    "success": true,
+    "message": "otp sent successfully",
+    "data": null,
+    "httpStatus": 201
+}
+
+resend otp
+PATCH: http://localhost:8081/api/auth/resend-otp/uvzug73579@minitts.net
+response
+{
+    "success": true,
+    "message": "otp resent successfully",
+    "data": null,
+    "httpStatus": 200
+}
+
+verify-otp (check email)
+PATCH: localhost:8081/api/auth/merchant/verify
+body/raw/json
+{
+    "email": "uvzug73579@minitts.net",
+    "otp" : "416855"
+}
+
+response
+{
+    "success": true,
+    "message": "registration successful",
+    "data": null,
     "httpStatus": 200
 }

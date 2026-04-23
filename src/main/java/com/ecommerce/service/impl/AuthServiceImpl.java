@@ -88,7 +88,7 @@ public class AuthServiceImpl implements AuthService {
         }
 
         int otp = generateOtp();
-        emailService.sendOtp(merchantRequest.getBusinessEmail(), merchantRequest.getBusinessMobile(), otp);
+        emailService.sendOtp(merchantRequest.getOwnerName(), merchantRequest.getBusinessEmail(), otp);
         redisService.storeOtp(merchantRequest.getBusinessEmail(), otp);
         redisService.storePendingMerchant(merchantRequest.getBusinessEmail(), merchantRequest);
     }
@@ -161,7 +161,7 @@ public class AuthServiceImpl implements AuthService {
                 .mobile(storedMerchant.getBusinessMobile())
                 .dateOfBirth(storedMerchant.getDateOfBirth())
                 .address(storedMerchant.getBusinessAddress())
-                .password(storedMerchant.getPassword())
+                .password(passwordEncoder.encode(storedMerchant.getPassword()))
                 .gender(storedMerchant.getGender())
                 .userRole(UserRole.MERCHANT)
                 .userStatus(UserStatus.ACTIVE)
@@ -174,6 +174,7 @@ public class AuthServiceImpl implements AuthService {
                 .gstNumber(storedMerchant.getGstNumber())
                 .panNumber(storedMerchant.getPanNumber())
                 .businessLicense(storedMerchant.getBusinessLicense())
+                .user(user)
                 .build();
         merchantRepository.save(merchant);
 

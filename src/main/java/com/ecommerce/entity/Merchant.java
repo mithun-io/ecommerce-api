@@ -1,6 +1,5 @@
 package com.ecommerce.entity;
 
-import com.ecommerce.enums.UserStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +11,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Builder
-@Table(name = "customers")
+@Table(name = "merchants")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Merchant {
@@ -29,9 +28,6 @@ public class Merchant {
     private String panNumber;
 
     private String businessLicense;
-
-    @Column(nullable = false)
-    private LocalDateTime createdAt;
 
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false, unique = true)
