@@ -94,6 +94,7 @@ public class MerchantServiceImpl implements MerchantService {
                 .eventType("PRODUCT_CREATED")
                 .productId(savedProduct.getId())
                 .merchantId(merchant.getId())
+                .merchantEmail(merchant.getUser().getEmail())
                 .title(savedProduct.getName())
                 .price(savedProduct.getPrice())
                 .status(savedProduct.getProductStatus().name())

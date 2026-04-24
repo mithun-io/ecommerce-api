@@ -3,6 +3,7 @@ package com.ecommerce.helper;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
@@ -14,6 +15,9 @@ import org.springframework.stereotype.Service;
 public class EmailService {
 
     private final JavaMailSender javaMailSender;
+
+    @Value("${ADMIN_EMAIL}")
+    private String adminEmail;
 
     @Async
     public void sendOtp(String name, String email, Integer otp) {
@@ -81,7 +85,7 @@ public class EmailService {
                     + "<p>ID: <b>" + productId + "</b></p>"
                     + "</body></html>";
 
-            sendEmail("admin@ecommerce.com", subject, text);
+            sendEmail(adminEmail, subject, text);
 
         } catch (Exception e) {
             log.error("failed to notify admin", e);
@@ -109,7 +113,7 @@ public class EmailService {
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
 
-        mimeMessageHelper.setFrom("admin@ecommerce.com", "ecommerce app");
+        mimeMessageHelper.setFrom(adminEmail, "ecommerce app");
         mimeMessageHelper.setTo(to);
         mimeMessageHelper.setSubject(subject);
         mimeMessageHelper.setText(htmlContent, true);

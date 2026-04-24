@@ -4,7 +4,7 @@ admin login
 POST: localhost:8081/api/auth/login
 body/raw/json
 {
-    "email" : "admin@ecommerce.com",
+    "email" : "dsfnf80181@minitts.net",
     "password" : "Qw3!@sPe:E1"
 }
 
@@ -210,6 +210,7 @@ merchant controller
 
 login as merchant
 POST: localhost:8081/api/auth/login
+body/raw/json
 {
   "email": "uvzug73579@minitts.net",
   "password": "SDh129!@ds19"

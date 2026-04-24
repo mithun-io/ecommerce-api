@@ -13,7 +13,7 @@ public interface ProductMapper {
 
     Product toProduct(ProductRequest productRequest);
 
-    @Mapping(target = "merchantId", expression = "java(product.getMerchant().getId())")
+    @Mapping(target = "merchantId", expression = "java(product.getMerchant() != null ? product.getMerchant().getId() : null)")
     @Mapping(target = "title", expression = "java(product.getName())")
     ProductResponse toProductResponse(Product product);
 
