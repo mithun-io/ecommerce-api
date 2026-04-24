@@ -70,6 +70,41 @@ public class EmailService {
         }
     }
 
+    @Async
+    public void notifyAdminNewProduct(String title, Long productId) {
+        try {
+            String subject = "new product pending approval";
+
+            String text = "<html><body>"
+                    + "<h3>New product added</h3>"
+                    + "<p>Product: <b>" + title + "</b></p>"
+                    + "<p>ID: <b>" + productId + "</b></p>"
+                    + "</body></html>";
+
+            sendEmail("admin@ecommerce.com", subject, text);
+
+        } catch (Exception e) {
+            log.error("failed to notify admin", e);
+        }
+    }
+
+    @Async
+    public void sendProductApprovedEmail(String email, String title) {
+        try {
+            String subject = "product Approved";
+
+            String text = "<html><body>"
+                    + "<h3>your product has been approved</h3>"
+                    + "<p>product: <b>" + title + "</b></p>"
+                    + "</body></html>";
+
+            sendEmail(email, subject, text);
+
+        } catch (Exception e) {
+            log.error("failed to send product approval email", e);
+        }
+    }
+
     private void sendEmail(String to, String subject, String htmlContent) throws Exception {
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);

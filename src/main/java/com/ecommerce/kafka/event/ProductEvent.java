@@ -17,6 +17,8 @@ public class ProductEvent {
 
     private Long merchantId;
 
+    private String merchantEmail;
+
     private String title;
 
     private Double price;
